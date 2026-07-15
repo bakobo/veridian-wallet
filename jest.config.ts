@@ -1,3 +1,9 @@
+// Pin the timezone so locale/date formatting in tests is deterministic
+// regardless of the machine's local zone. Without this, assertions on
+// locale-formatted dates (e.g. formatLongDate in src/ui/utils/formatters.test.ts)
+// pass only in UTC/positive-offset zones and fail in negative-offset zones.
+process.env.TZ = "UTC";
+
 export default {
   clearMocks: true,
   collectCoverage: true,
